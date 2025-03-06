@@ -4,8 +4,8 @@ const {
   login,
   getProfile,
   updateProfile,
-} = require("../../controllers/user-management/UserController.cjs");
-const authMiddleware = require("../../middleware/authMiddleware.cjs");
+} = require("../../controllers/user-management/user.controller.cjs");
+const authMiddleware = require("../../middlewares/auth.middleware.cjs");
 
 const router = express.Router();
 

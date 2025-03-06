@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const userRoutes = require("./routes/user-management/UserRoutes.cjs"); // Import the promotion routes
-const connectDB = require("./config/database.cjs");
-const { requestLogger, errorLogger } = require("./middleware/logger.cjs");
+const userRoutes = require("../routes/user-management/user.routes.cjs"); // Import the promotion routes
+const connectDB = require("./db.cjs");
+const { requestLogger, errorLogger } = require("./logger.cjs");
 
 dotenv.config();
 

@@ -1,7 +1,5 @@
-const mongoose = require("mongoose"); // Fix the incorrect import
-const dotenv = require("dotenv");
-
-dotenv.config();
+const mongoose = require("mongoose");
+require("dotenv").config({ path: "./src/config/.env" });
 
 const connectDB = async () => {
   try {
