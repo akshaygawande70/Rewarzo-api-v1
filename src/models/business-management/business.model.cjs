@@ -9,8 +9,9 @@ const businessSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-    }, // Reference to the User who owns the business
-    branches: [{ type: mongoose.Schema.Types.ObjectId, ref: "Branch" }], // Reference to branches
+    }, // Reference to the user (Admin)
+    branches: [{ type: mongoose.Schema.Types.ObjectId, ref: "Branch" }], // Linked branches
+    spoc: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Assigned SPOC for the business
   },
   { timestamps: true }
 );

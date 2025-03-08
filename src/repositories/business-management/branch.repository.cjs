@@ -1,45 +1,24 @@
 const Branch = require("../../models/business-management/branch.model.cjs");
-const Business = require("../../models/business-management/business.model.cjs");
 
-class BranchRepository {
-  async createBranch(branchData) {
-    return await new Branch(branchData).save();
-  }
+exports.createBranch = async (data) => {
+  return await Branch.create(data);
+};
 
-  async findById(branchId) {
-    return await Branch.findById(branchId).populate("business");
-  }
+exports.findBranchById = async (id) => {
+  return await Branch.findById(id).populate("business"); // Populate parent business details
+};
 
-  async updateBranch(branchId, updateData) {
-    return await Branch.findByIdAndUpdate(branchId, updateData, {
-      new: true,
-      runValidators: true,
-    });
-  }
+exports.findBranchesByBusiness = async (businessId) => {
+  return await Branch.find({ business: businessId });
+};
 
-  async deleteBranch(branchId) {
-    return await Branch.findByIdAndDelete(branchId);
-  }
+exports.updateBranch = async (id, updates) => {
+  return await Branch.findByIdAndUpdate(id, updates, {
+    new: true,
+    runValidators: true,
+  });
+};
 
-  async findBranchesByBusiness(businessId) {
-    return await Branch.find({ business: businessId });
-  }
-
-  async addBranchToBusiness(businessId, branchId) {
-    return await Business.findByIdAndUpdate(
-      businessId,
-      { $push: { branches: branchId } },
-      { new: true }
-    );
-  }
-
-  async removeBranchFromBusiness(businessId, branchId) {
-    return await Business.findByIdAndUpdate(
-      businessId,
-      { $pull: { branches: branchId } },
-      { new: true }
-    );
-  }
-}
-
-module.exports = new BranchRepository();
+exports.deleteBranch = async (id) => {
+  return await Branch.findByIdAndDelete(id);
+};

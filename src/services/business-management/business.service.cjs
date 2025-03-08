@@ -1,20 +1,16 @@
 const BusinessRepository = require("../../repositories/business-management/business.repository.cjs");
 
-class BusinessService {
-  async createBusiness(name, address, contact, ownerId) {
-    return await BusinessRepository.createBusiness({
-      name,
-      address,
-      contact,
-      owner: ownerId,
-    });
-  }
+exports.registerBusiness = async (data) => {
+  // Add any specific business logic here
+  return await businessRepository.createBusiness(data);
+};
 
-  async getBusiness(businessId) {
-    const business = await BusinessRepository.findById(businessId);
-    if (!business) throw new Error("Business not found");
-    return business;
-  }
-}
+exports.getBusinessById = async (id) => {
+  const business = await businessRepository.findBusinessById(id);
+  if (!business) throw new Error("Business not found");
+  return business;
+};
 
-module.exports = new BusinessService();
+exports.updateBusinessDetails = async (id, updates) => {
+  return await businessRepository.updateBusiness(id, updates);
+};

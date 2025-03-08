@@ -9,9 +9,10 @@ const branchSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Business",
       required: true,
-    }, // Reference to the parent business
+    }, // Parent business reference
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Branch", branchSchema);
+module.exports =
+  mongoose.models.Branch || mongoose.model("Branch", branchSchema);

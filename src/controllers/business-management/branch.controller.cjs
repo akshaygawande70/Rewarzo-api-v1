@@ -1,41 +1,41 @@
-const BranchService = require("../../services/business-management/branch.service.cjs");
+const branchService = require("../../services/business-management/branch.service.cjs");
 
-exports.addBranch = async (req, res) => {
+exports.createBranch = async (req, res) => {
   try {
     const { name, address, contact, businessId } = req.body;
-    const branch = await BranchService.addBranch(
+
+    const newBranch = await branchService.addBranch({
       name,
       address,
       contact,
-      businessId
-    );
+      business: businessId,
+    });
 
-    res.status(201).json({ message: "Branch added successfully", branch });
+    res
+      .status(201)
+      .json({ message: "Branch created successfully", branch: newBranch });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-exports.getBranchById = async (req, res) => {
+exports.getBranch = async (req, res) => {
   try {
-    const result = await BranchService.getBranch(req.params.id);
-    res.json(result);
+    const branch = await branchService.getBranchById(req.params.id);
+    res.json(branch);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
 exports.updateBranch = async (req, res) => {
   try {
-    const { name, address, contact } = req.body;
-    const branch = await BranchService.updateBranch(
+    const updates = req.body;
+    const updatedBranch = await branchService.updateBranchDetails(
       req.params.id,
-      name,
-      address,
-      contact
+      updates
     );
-
-    res.json({ message: "Branch updated successfully", branch });
+    res.json({ message: "Branch updated successfully", branch: updatedBranch });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -43,16 +43,18 @@ exports.updateBranch = async (req, res) => {
 
 exports.deleteBranch = async (req, res) => {
   try {
-    const result = await BranchService.deleteBranch(req.params.id);
-    res.json(result);
+    await branchService.removeBranch(req.params.id);
+    res.json({ message: "Branch deleted successfully" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
 exports.listBranches = async (req, res) => {
   try {
-    const branches = await BranchService.listBranches(req.params.businessId);
+    const branches = await branchService.getBranchesByBusiness(
+      req.params.businessId
+    );
     res.json(branches);
   } catch (error) {
     res.status(400).json({ error: error.message });
