@@ -2,9 +2,11 @@
   "name": "rewarzo-backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/config/server.js",
+    "test": "mocha 'src/test/**/*.test.js' --timeout 10000"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -16,5 +18,12 @@
     "rewarzo-backend": "file:",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0",
+    "mongodb-memory-server": "^10.1.4",
+    "sinon": "^19.0.2",
+    "supertest": "^7.0.0"
   }
 }
