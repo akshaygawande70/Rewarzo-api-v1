@@ -1,7 +1,7 @@
-const request = require("supertest");
+import request from "supertest";
 import { expect } from "chai";
-const app = require("../../config/server.js"); // Ensure you export your Express app
-const Activity = require("../../models/rewards-management/activity.model.js"); // Import the Activity model
+import app from "../../config/server.js"; // Ensure you export your Express app
+import Activity from "../../models/rewards-management/activity.model.js"; // Import the Activity model
 
 describe("Customer Engagement API", () => {
   beforeEach(async () => {
