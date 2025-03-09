@@ -12,6 +12,7 @@ const branchRoutes = require("../routes/business-management/branch.routes.cjs");
 const rewardRoutes = require("../routes/rewards-management/reward.routes.cjs"); // Import the reward routes
 const rewardRuleRoutes = require("../routes/rewards-management/rewardrule.routes.cjs"); // Import the reward rule routes
 const customerGroupRoutes = require("../routes/customer-groups-management/customergroup.routes.cjs"); // Import the customer group routes
+const analyticsRoutes = require("../analytics-layer/routes/analytics.routes.cjs"); // Import the analytics routes
 
 // Create an express app
 const app = express();
@@ -54,6 +55,7 @@ app.use("/api/branches", branchRoutes); // Register the branch routes
 app.use("/api/rewards", rewardRoutes); // Register the reward routes
 app.use("/api/reward-rules", rewardRuleRoutes); // Register the reward rule routes
 app.use("/api/groups", customerGroupRoutes); // Register the customer group routes
+app.use("/api/analytics", analyticsRoutes); // Register the analytics routes
 
 // Start the server
 const PORT = process.env.PORT || 5000;
