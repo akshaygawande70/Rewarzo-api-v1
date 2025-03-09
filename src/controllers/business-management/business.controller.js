@@ -46,8 +46,28 @@ const updateBusiness = async (req, res) => {
   }
 };
 
+const deleteBusiness = async (req, res) => {
+  try {
+    await businessService.deleteBusiness(req.params.id);
+    res.json({ message: "Business deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const listBusinesses = async (req, res) => {
+  try {
+    const businesses = await businessService.listBusinesses();
+    res.json(businesses);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 export default {
   createBusiness,
   getBusiness,
   updateBusiness,
+  deleteBusiness,
+  listBusinesses,
 };

@@ -1,7 +1,7 @@
 import express from "express"; // Import the express library
 import cors from "cors"; // Import the cors middleware
-import swaggerUi from "swagger-ui-express"; // Import the swagger UI library
-import swaggerSpecs from "./swaggerConfig.js"; // Import the swagger configuration
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from "./swagger-outputs.json" assert { type: "json" };
 import connectDB from "./db.js"; // Import the database connection
 import { requestLogger, errorLogger } from "./logger.js"; // Import the logger middleware
 import initializeConfigs from "./initializeConfig.js"; // Import the initializeConfigs function
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false })); // Parse URL-encoded bodies
 app.use(express.json()); // Parse JSON bodies
 app.use(express.static("public")); // Serve static files
 // Swagger Docs Route
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Initialize configurations
 initializeConfigs;

@@ -22,9 +22,17 @@ const deleteBusiness = async (id) => {
   return await Business.findByIdAndDelete(id);
 };
 
+const listBusinesses = async () => {
+  return await Business.find()
+    .populate("owner")
+    .populate("branches")
+    .populate("spoc");
+};
+
 export default {
   createBusiness,
   findBusinessById,
   updateBusiness,
   deleteBusiness,
+  listBusinesses,
 };

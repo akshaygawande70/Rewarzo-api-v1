@@ -15,8 +15,18 @@ const updateBusinessDetails = async (id, updates) => {
   return await businessRepository.updateBusiness(id, updates);
 };
 
+const deleteBusiness = async (id) => {
+  return await businessRepository.deleteBusiness(id);
+};
+
+const listBusinesses = async () => {
+  return await businessRepository.listBusinesses();
+};
+
 export default {
   registerBusiness,
   getBusinessById,
   updateBusinessDetails,
+  deleteBusiness,
+  listBusinesses,
 };

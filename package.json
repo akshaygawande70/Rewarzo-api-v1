@@ -5,7 +5,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node src/config/server.js",
+    "generate-docs": "node ./src/config/swagger.js",
+    "start": "npm run generate-docs && node ./src/config/server.js",
     "test": "mocha 'src/test/**/*.test.js' --timeout 10000"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.11.0",
     "rewarzo-backend": "file:",
+    "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },

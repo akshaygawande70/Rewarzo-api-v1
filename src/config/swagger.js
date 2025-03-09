@@ -8,11 +8,10 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API documentation for the Loyalty Rewards System",
     },
-    servers: [{ url: "/" }],
+    servers: [{ url: "http://localhost:5000" }],
   },
-  apis: ["./src/routes/**/*.routes.js"], // Dynamically scan all 'routes.js' files in sub-folders
+  apis: ["./src/routes/**/*.js"], // Scans route files for API definitions
 };
 
 const swaggerSpecs = swaggerJSDoc(swaggerOptions);
-
 export default swaggerSpecs;
